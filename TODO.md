@@ -4,6 +4,9 @@
 - don't optimize too early
 
 ## todo
-- make github
+- [x] make github
+- [] overworld
+    - [] terrain (flat)
+    
 
 
