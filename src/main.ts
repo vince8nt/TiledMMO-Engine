@@ -21,57 +21,96 @@ const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerH
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // cube
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+/*const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshStandardMaterial({ color: 0x20FF40});
 const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+scene.add(cube);*/
 
-/*
-const plane_geometry = new THREE.PlaneGeometry(5, 5);
-const plane_texture = new THREE.TextureLoader().load( "textures/terrain_tileset.png" );
-plane_texture.magFilter = THREE.NearestFilter;
-plane_texture.colorSpace = THREE.SRGBColorSpace;
-plane_texture.offset.x = 0.25;
-plane_texture.offset.y = 0.0;
-plane_texture.repeat.x = 0.25;
-plane_texture.repeat.y = 0.25;
-
-// plane_texture.rotation = Math.PI / 2;
-// plane_texture.offset.y += .25;
-
-// plane_texture.rotation = Math.PI;
-// plane_texture.offset.x += .25;
-// plane_texture.offset.y += .25;
-
-// plane_texture.rotation = -Math.PI / 2;
-// plane_texture.offset.x += .25;
-
-const plane_material = new THREE.MeshStandardMaterial({ map: plane_texture});
-const plane = new THREE.Mesh(plane_geometry, plane_material);
-plane.rotateX(-Math.PI / 2);
-plane.position.setX(3);
-scene.add(plane);*/
-
+// chunks
 const tileset = new Tileset();
-let chunk_dat:any[] = [128, 'grass', 16, 'path', 112, 'grass'];
-const chunk:Chunk = tileset.gen_chunk(chunk_dat);
-scene.add(chunk);
+let chunk_dat:any[] = [
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+
+  2, 'grass', 12, 'mount_d', 2, 'grass',
+  1, 'grass', 1, 'mount_l', [2, 1], 'grass', 2, 'none',
+  [1, 1], 'grass', [6, 1], 'mount_d', [1, 1], 'grass', 1, 'mount_r', 1, 'grass',
+  1, 'grass', 1, 'mount_l', [2, 1], 'grass', [1, 1], 'tree', 1, 'none',
+    [1, 1], 'mount_l', [6, 2], 'grass', [1, 1], 'mount_r', 1, 'mount_r', 1, 'grass',
+  1, 'grass', 1, 'mount_l', [5, 1], 'grass',
+    [6, 1], 'mount_u', [1, 1], 'grass', 1, 'mount_r', 1, 'grass',
+  2, 'grass', 12, 'mount_u', 2, 'grass',
+
+  
+  1, 'path_ul', 14, 'path_u', 1, 'path_ur',
+  1, 'path_l', 14, 'path', 1, 'path_r',
+  1, 'path_l', 14, 'path', 1, 'path_r',
+  1, 'path_dl', 14, 'path_d', 1, 'path_dr',
+  48, 'grass'
+];
+
+let chunk_dat2:any[] = [
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  16, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
+  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none'
+];
+
+// add some chunk copies
+const chunk1:Chunk = tileset.gen_chunk(chunk_dat);
+scene.add(chunk1);
+const chunk2:Chunk = tileset.gen_chunk(chunk_dat2);
+chunk2.position.x = -16;
+scene.add(chunk2);
+/*
+const chunk3:Chunk = tileset.gen_chunk(chunk_dat2);
+chunk3.position.z = -16;
+scene.add(chunk3);
+const chunk4:Chunk = tileset.gen_chunk(chunk_dat2);
+chunk4.position.x = -16;
+chunk4.position.z = -16;
+scene.add(chunk4);*/
 
 // lighting
 const ambient = new THREE.AmbientLight();
 ambient.intensity = 0.2;
 scene.add(ambient);
 const light = new THREE.PointLight(0xFFFFFF, 1, 0, .5);
-light.position.set(5, 2, 5);
+light.position.set(0, 2, 8);
 scene.add(light);
 
-camera.position.z = 5;
-camera.position.y = 5;
+
+camera.position.z = 24;
+camera.position.y = 20;
 controls.update();
 
 // renderer.render(scene, camera);
 function animate() {
-  cube.rotation.x += 0.01;
+  // cube.rotation.x += 0.01;
   // cube.rotation.y += 0.01;
   stats.update();
   controls.update();
