@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/orbitControls.js';
 import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { Tileset, Chunk } from './terrain';
+import { loadObject } from './objects';
 
 // setup stats/GUI panel
 const gui = new GUI();
@@ -19,12 +20,6 @@ document.body.appendChild(renderer.domElement); // add canvas
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
 const controls = new OrbitControls(camera, renderer.domElement);
-
-// cube
-/*const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshStandardMaterial({ color: 0x20FF40});
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);*/
 
 // chunks
 const tileset = new Tileset();
@@ -80,20 +75,36 @@ let chunk_dat2:any[] = [
   1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none'
 ];
 
+let chunk_dat3:any[] = [
+  192, 'grass',
+  2, 'grass', 1, 'path', 2, 'grass', 1, 'path', 2, 'grass', 1, 'path', 7, 'grass',
+  48, 'grass'
+];
+
 // add some chunk copies
 const chunk1:Chunk = tileset.gen_chunk(chunk_dat);
 scene.add(chunk1);
 const chunk2:Chunk = tileset.gen_chunk(chunk_dat2);
 chunk2.position.x = -16;
 scene.add(chunk2);
-/*
-const chunk3:Chunk = tileset.gen_chunk(chunk_dat2);
+const chunk3:Chunk = tileset.gen_chunk(chunk_dat3);
 chunk3.position.z = -16;
 scene.add(chunk3);
-const chunk4:Chunk = tileset.gen_chunk(chunk_dat2);
+const chunk4:Chunk = tileset.gen_chunk(chunk_dat3);
 chunk4.position.x = -16;
 chunk4.position.z = -16;
-scene.add(chunk4);*/
+scene.add(chunk4);
+
+// add Building objects
+const burnedTower = await loadObject('Burned_Tower');
+burnedTower.position.set(5, 0, -7);
+scene.add( burnedTower );
+
+const sproutTower = await loadObject('Sprout_Tower');
+sproutTower.position.set(-11, 0, -7);
+scene.add( sproutTower );
+
+
 
 // lighting
 const ambient = new THREE.AmbientLight();
@@ -110,8 +121,6 @@ controls.update();
 
 // renderer.render(scene, camera);
 function animate() {
-  // cube.rotation.x += 0.01;
-  // cube.rotation.y += 0.01;
   stats.update();
   controls.update();
   renderer.render(scene, camera);
