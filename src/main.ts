@@ -18,7 +18,8 @@ document.body.appendChild(renderer.domElement); // add canvas
 
 // setup scene + controls
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
+// const camera = new THREE.OrthographicCamera(window.innerWidth / -40, window.innerWidth / 40, window.innerHeight / 40, window.innerHeight / -40, 0.1, 100);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // chunks
@@ -110,7 +111,8 @@ scene.add( sproutTower );
 const ambient = new THREE.AmbientLight();
 ambient.intensity = 0.2;
 scene.add(ambient);
-const light = new THREE.PointLight(0xFFFFFF, 1, 0, .5);
+// const light = new THREE.PointLight(0xFFFFFF, 1, 0, .5);
+const light = new THREE.DirectionalLight(0xFFFFFF);
 light.position.set(0, 2, 8);
 scene.add(light);
 

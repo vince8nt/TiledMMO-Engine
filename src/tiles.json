@@ -1,0 +1,32 @@
+{
+  "grass": { "type": "Tile", "x": 0, "y": 6, "rep_x": 2, "rep_y": 2, "rot": 0, "trans": false },
+  "grass_tuft": { "type": "Tile", "x": 0, "y": 4, "rep_x": 1, "rep_y": 1, "rot": 0, "trans": false },
+
+  "tree": { "type": "TreeTile" },
+  "stump_ul": { "type": "Tile", "x": 1, "y": 5, "rep_x": 1, "rep_y": 1, "rot": 2, "trans": false },
+  "stump_ur": { "type": "Tile", "x": 0, "y": 5, "rep_x": 1, "rep_y": 1, "rot": 2, "trans": false },
+  "stump_dl": { "type": "Tile", "x": 0, "y": 5, "rep_x": 1, "rep_y": 1, "rot": 0, "trans": false },
+  "stump_dr": { "type": "Tile", "x": 1, "y": 5, "rep_x": 1, "rep_y": 1, "rot": 0, "trans": false },
+
+  "mount_u": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 0, "corner_type": 0 },
+  "mount_d": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 2, "corner_type": 0 },
+  "mount_l": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 3, "corner_type": 0 },
+  "mount_r": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 1, "corner_type": 0 },
+
+  "path": { "type": "Tile", "x": 2, "y": 0, "rep_x": 2, "rep_y": 2, "rot": 0, "trans": false },
+
+  "path_u": { "type": "Tile", "x": 2, "y": 2, "rep_x": 1, "rep_y": 2, "rot": 3, "trans": true },
+  "path_d": { "type": "Tile", "x": 2, "y": 2, "rep_x": 1, "rep_y": 2, "rot": 1, "trans": true },
+  "path_l": { "type": "Tile", "x": 2, "y": 2, "rep_x": 1, "rep_y": 2, "rot": 0, "trans": true },
+  "path_r": { "type": "Tile", "x": 2, "y": 2, "rep_x": 1, "rep_y": 2, "rot": 2, "trans": true },
+
+  "path_ul": { "type": "Tile", "x": 3, "y": 3, "rep_x": 1, "rep_y": 1, "rot": 0, "trans": true },
+  "path_ur": { "type": "Tile", "x": 3, "y": 3, "rep_x": 1, "rep_y": 1, "rot": 3, "trans": true },
+  "path_dl": { "type": "Tile", "x": 3, "y": 3, "rep_x": 1, "rep_y": 1, "rot": 1, "trans": true },
+  "path_dr": { "type": "Tile", "x": 3, "y": 3, "rep_x": 1, "rep_y": 1, "rot": 2, "trans": true },
+
+  "path_lu": { "type": "Tile", "x": 3, "y": 2, "rep_x": 1, "rep_y": 1, "rot": 0, "trans": true },
+  "path_ru": { "type": "Tile", "x": 3, "y": 2, "rep_x": 1, "rep_y": 1, "rot": 3, "trans": true },
+  "path_ld": { "type": "Tile", "x": 3, "y": 2, "rep_x": 1, "rep_y": 1, "rot": 1, "trans": true },
+  "path_rd": { "type": "Tile", "x": 3, "y": 2, "rep_x": 1, "rep_y": 1, "rot": 2, "trans": true }
+}
