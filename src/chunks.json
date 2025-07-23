@@ -53,5 +53,8 @@
     192, "grass",
     2, "grass", 1, "path", 2, "grass", 1, "path", 2, "grass", 1, "path", 7, "grass",
     48, "grass"
+  ],
+  "empty_chunk": [
+    256, "none"
   ]
 } 

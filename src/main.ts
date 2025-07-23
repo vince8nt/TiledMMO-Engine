@@ -4,6 +4,7 @@ import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { Tileset, Chunk } from './terrain';
 import { loadObject } from './objects';
 import { Player } from './player';
+import { ChunkManager } from './chunkManager';
 
 // setup stats/GUI panel
 const gui = new GUI();
@@ -13,7 +14,6 @@ document.body.appendChild(stats.dom);
 // setup 3d renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement); // add canvas
 
 // setup scene
@@ -24,23 +24,18 @@ const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerH
 // Create player
 const player = new Player();
 
-// chunks
+// Camera zoom settings
+let cameraDistance = 24;
+let cameraHeight = 32;
+const minDistance = 8;
+const maxDistance = 48;
+
+// Initialize chunk system
 const tileset = new Tileset();
 await tileset.loadChunkData();
 
-// add some chunk copies
-const chunk1:Chunk = tileset.genChunkFromName('chunk1')!;
-scene.add(chunk1);
-const chunk2:Chunk = tileset.genChunkFromName('chunk2')!;
-chunk2.position.x = -16;
-scene.add(chunk2);
-const chunk3:Chunk = tileset.genChunkFromName('chunk3')!;
-chunk3.position.z = -16;
-scene.add(chunk3);
-const chunk4:Chunk = tileset.genChunkFromName('chunk3')!;
-chunk4.position.x = -16;
-chunk4.position.z = -16;
-scene.add(chunk4);
+// Create chunk manager (will be initialized later)
+let chunkManager: ChunkManager;
 
 // add Building objects
 const burnedTower = await loadObject('Burned_Tower');
@@ -54,6 +49,26 @@ scene.add( sproutTower );
 // Add player to scene
 scene.add(player.getMesh());
 
+// Initialize chunk manager
+chunkManager = new ChunkManager(tileset, scene);
+await chunkManager.loadChunkMap();
+
+// Start animation loop after everything is initialized
+renderer.setAnimationLoop(animate);
+
+// Add scroll wheel zoom
+document.addEventListener('wheel', (event) => {
+    const zoomSpeed = 0.1;
+    const delta = event.deltaY > 0 ? 1 : -1;
+    
+    // Update camera distance
+    cameraDistance += delta * zoomSpeed * cameraDistance;
+    cameraDistance = Math.max(minDistance, Math.min(maxDistance, cameraDistance));
+    
+    // Update camera height proportionally
+    cameraHeight = cameraDistance * 1.33; // Maintain aspect ratio
+});
+
 
 
 // lighting
@@ -66,8 +81,8 @@ light.position.set(0, 2, 8);
 scene.add(light);
 
 
-camera.position.z = 24;
-camera.position.y = 20;
+// camera.position.z = 24;
+// camera.position.y = 20;
 
 // renderer.render(scene, camera);
 function animate() {
@@ -76,8 +91,13 @@ function animate() {
   
   // Update camera to follow player
   const playerPos = player.getPosition();
-  camera.position.set(playerPos.x, playerPos.y + 20, playerPos.z + 16);
+  camera.position.set(playerPos.x, playerPos.y + cameraHeight, playerPos.z + cameraDistance);
   camera.lookAt(playerPos);
+  
+  // Update chunks based on player position (if chunk manager is initialized)
+  if (chunkManager) {
+    chunkManager.updateChunks(playerPos.x, playerPos.z);
+  }
   
   renderer.render(scene, camera);
 }
