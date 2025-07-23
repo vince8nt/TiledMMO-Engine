@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/orbitControls.js';
 import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { Tileset, Chunk } from './terrain';
 import { loadObject } from './objects';
+import { Player } from './player';
 
 // setup stats/GUI panel
 const gui = new GUI();
@@ -16,11 +16,13 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement); // add canvas
 
-// setup scene + controls
+// setup scene
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
 // const camera = new THREE.OrthographicCamera(window.innerWidth / -40, window.innerWidth / 40, window.innerHeight / 40, window.innerHeight / -40, 0.1, 100);
-const controls = new OrbitControls(camera, renderer.domElement);
+
+// Create player
+const player = new Player();
 
 // chunks
 const tileset = new Tileset();
@@ -49,6 +51,9 @@ const sproutTower = await loadObject('Sprout_Tower');
 sproutTower.position.set(-11, 0, -7);
 scene.add( sproutTower );
 
+// Add player to scene
+scene.add(player.getMesh());
+
 
 
 // lighting
@@ -63,12 +68,17 @@ scene.add(light);
 
 camera.position.z = 24;
 camera.position.y = 20;
-controls.update();
 
 // renderer.render(scene, camera);
 function animate() {
   stats.update();
-  controls.update();
+  player.update();
+  
+  // Update camera to follow player
+  const playerPos = player.getPosition();
+  camera.position.set(playerPos.x, playerPos.y + 20, playerPos.z + 16);
+  camera.lookAt(playerPos);
+  
   renderer.render(scene, camera);
 }
 
