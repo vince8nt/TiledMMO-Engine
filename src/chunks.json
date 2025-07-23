@@ -1,0 +1,57 @@
+{
+  "chunk1": [
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+
+    2, "grass", 12, "mount_d", 2, "grass",
+    1, "grass", 1, "mount_l", [2, 1], "grass", 2, "none",
+    [1, 1], "grass", [6, 1], "mount_d", [1, 1], "grass", 1, "mount_r", 1, "grass",
+    1, "grass", 1, "mount_l", [2, 1], "grass", [1, 1], "tree", 1, "none",
+      [1, 1], "mount_l", [6, 2], "grass", [1, 1], "mount_r", 1, "mount_r", 1, "grass",
+    1, "grass", 1, "mount_l", [5, 1], "grass",
+      [6, 1], "mount_u", [1, 1], "grass", 1, "mount_r", 1, "grass",
+    2, "grass", 12, "mount_u", 2, "grass",
+
+    
+    1, "path_ul", 14, "path_u", 1, "path_ur",
+    1, "path_l", 14, "path", 1, "path_r",
+    1, "path_l", 14, "path", 1, "path_r",
+    1, "path_dl", 14, "path_d", 1, "path_dr",
+    48, "grass"
+  ],
+  "chunk2": [
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    16, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
+    1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none"
+  ],
+  "chunk3": [
+    192, "grass",
+    2, "grass", 1, "path", 2, "grass", 1, "path", 2, "grass", 1, "path", 7, "grass",
+    48, "grass"
+  ]
+} 

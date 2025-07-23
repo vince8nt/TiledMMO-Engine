@@ -24,74 +24,18 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 // chunks
 const tileset = new Tileset();
-let chunk_dat:any[] = [
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-
-  2, 'grass', 12, 'mount_d', 2, 'grass',
-  1, 'grass', 1, 'mount_l', [2, 1], 'grass', 2, 'none',
-  [1, 1], 'grass', [6, 1], 'mount_d', [1, 1], 'grass', 1, 'mount_r', 1, 'grass',
-  1, 'grass', 1, 'mount_l', [2, 1], 'grass', [1, 1], 'tree', 1, 'none',
-    [1, 1], 'mount_l', [6, 2], 'grass', [1, 1], 'mount_r', 1, 'mount_r', 1, 'grass',
-  1, 'grass', 1, 'mount_l', [5, 1], 'grass',
-    [6, 1], 'mount_u', [1, 1], 'grass', 1, 'mount_r', 1, 'grass',
-  2, 'grass', 12, 'mount_u', 2, 'grass',
-
-  
-  1, 'path_ul', 14, 'path_u', 1, 'path_ur',
-  1, 'path_l', 14, 'path', 1, 'path_r',
-  1, 'path_l', 14, 'path', 1, 'path_r',
-  1, 'path_dl', 14, 'path_d', 1, 'path_dr',
-  48, 'grass'
-];
-
-let chunk_dat2:any[] = [
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  16, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none',
-  1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none', 1, 'tree', 1, 'none'
-];
-
-let chunk_dat3:any[] = [
-  192, 'grass',
-  2, 'grass', 1, 'path', 2, 'grass', 1, 'path', 2, 'grass', 1, 'path', 7, 'grass',
-  48, 'grass'
-];
+await tileset.loadChunkData();
 
 // add some chunk copies
-const chunk1:Chunk = tileset.gen_chunk(chunk_dat);
+const chunk1:Chunk = tileset.genChunkFromName('chunk1')!;
 scene.add(chunk1);
-const chunk2:Chunk = tileset.gen_chunk(chunk_dat2);
+const chunk2:Chunk = tileset.genChunkFromName('chunk2')!;
 chunk2.position.x = -16;
 scene.add(chunk2);
-const chunk3:Chunk = tileset.gen_chunk(chunk_dat3);
+const chunk3:Chunk = tileset.genChunkFromName('chunk3')!;
 chunk3.position.z = -16;
 scene.add(chunk3);
-const chunk4:Chunk = tileset.gen_chunk(chunk_dat3);
+const chunk4:Chunk = tileset.genChunkFromName('chunk3')!;
 chunk4.position.x = -16;
 chunk4.position.z = -16;
 scene.add(chunk4);
