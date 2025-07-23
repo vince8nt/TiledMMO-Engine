@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import tilesData from './tiles.json';
+import { Tileset } from './terrain';
 
 // Type definitions for tile data
 interface TileData {
@@ -131,6 +132,19 @@ export class TreeTile extends Tile {
         plane.position.setY(1 + z);
         plane.rotateY(0.001);
         mesh.add(plane);
+
+        let T = TilesetMap.get('stump_ul');
+        if (T)
+            mesh.add(T.getTileAt(x, y - 1, z));
+        T = TilesetMap.get('stump_ur');
+        if (T)
+            mesh.add(T.getTileAt(x + 1, y - 1, z));
+        T = TilesetMap.get('stump_dl');
+        if (T)
+            mesh.add(T.getTileAt(x, y, z));
+        T = TilesetMap.get('stump_dr');
+        if (T)
+            mesh.add(T.getTileAt(x + 1, y, z));
 
         // The Tileset.map reference will be updated later to avoid circular dependency
         return mesh;
