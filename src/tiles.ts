@@ -113,26 +113,39 @@ export class TreeTile extends Tile {
     getTileAt(x:number, y:number, z:number) : THREE.Mesh {
         const mesh = new THREE.Mesh();
 
-        const plane_geometry = new THREE.PlaneGeometry(4, 3);
-        const plane_texture = new THREE.TextureLoader().load( "textures/terrain_tileset.png" );
-        plane_texture.magFilter = THREE.NearestFilter;
-        plane_texture.minFilter = THREE.NearestFilter;
-        plane_texture.colorSpace = THREE.SRGBColorSpace;
-        plane_texture.offset.x = this.x / Tile.tileset_size;
-        plane_texture.offset.y = this.y / Tile.tileset_size;
-        plane_texture.repeat.x = this.rep_x / Tile.tileset_size;
-        plane_texture.repeat.y = this.rep_y / Tile.tileset_size;
-        const plane_material = new THREE.MeshPhongMaterial({ map: plane_texture});
-        if (this.trans)
-            plane_material.alphaTest = 1.0;
-        const plane = new THREE.Mesh(plane_geometry, plane_material);
-        plane.rotateX(-Math.PI / 4);
-        plane.position.setX(x + 0.5);
-        plane.position.setZ(y - 0.8);
-        plane.position.setY(1 + z);
-        plane.rotateY(0.001);
-        mesh.add(plane);
+        // Create tree as a billboard (sprite) for better performance and appearance
+        const treeTexture = new THREE.TextureLoader().load("textures/terrain_tileset.png");
+        treeTexture.magFilter = THREE.NearestFilter;
+        treeTexture.minFilter = THREE.NearestFilter;
+        treeTexture.colorSpace = THREE.SRGBColorSpace;
+        
+        // Set texture coordinates for the tree sprite
+        treeTexture.offset.x = this.x / Tile.tileset_size;
+        treeTexture.offset.y = this.y / Tile.tileset_size;
+        treeTexture.repeat.x = this.rep_x / Tile.tileset_size;
+        treeTexture.repeat.y = this.rep_y / Tile.tileset_size;
 
+        // Create sprite material with proper settings
+        const spriteMaterial = new THREE.SpriteMaterial({ 
+            map: treeTexture,
+            transparent: false,
+            sizeAttenuation: true,
+            depthTest: true,
+            depthWrite: true,
+            fog: false,
+            color: 0xB0B0B0
+        });
+        
+        spriteMaterial.toneMapped = false;
+        spriteMaterial.alphaTest = 0.1; // For transparent areas
+
+        // Create the tree sprite
+        const treeSprite = new THREE.Sprite(spriteMaterial);
+        treeSprite.position.set(x + 0.5, 0.75 + z, y - 1.0625); // Position above ground
+        treeSprite.scale.set(4, 3, 1); // Scale to appropriate size
+        mesh.add(treeSprite);
+
+        // Add stump tiles at the base (these can stay as regular tiles)
         let T = TilesetMap.get('stump_ul');
         if (T)
             mesh.add(T.getTileAt(x, y - 1, z));
@@ -146,7 +159,6 @@ export class TreeTile extends Tile {
         if (T)
             mesh.add(T.getTileAt(x + 1, y, z));
 
-        // The Tileset.map reference will be updated later to avoid circular dependency
         return mesh;
     }
 }
