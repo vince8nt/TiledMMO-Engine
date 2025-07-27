@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import tilesData from './tiles.json';
+import tilesData from '../map_data/tiles.json';
 import { Tileset } from './terrain';
 
 // Type definitions for tile data

@@ -14,7 +14,7 @@ export class Tileset {
 
     async loadChunkData(): Promise<void> {
         try {
-            const response = await fetch('./src/chunks.json');
+            const response = await fetch('./map_data/chunks.json');
             this.chunkData = await response.json();
             console.log('Chunk data loaded:', Object.keys(this.chunkData));
             console.log('TilesetMap size:', TilesetMap.size);

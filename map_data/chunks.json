@@ -1,5 +1,5 @@
 {
-  "chunk1": [
+  "mini_mountain": [
     16, "none",
     1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
     1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
@@ -23,7 +23,7 @@
     1, "path_dl", 14, "path_d", 1, "path_dr",
     48, "grass"
   ],
-  "chunk2": [
+  "trees": [
     16, "none",
     1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
     1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
@@ -49,7 +49,10 @@
     1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none",
     1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none", 1, "tree", 1, "none"
   ],
-  "chunk3": [
+  "grass": [
+    256, "grass"
+  ],
+  "building_allign_test": [
     192, "grass",
     2, "grass", 1, "path", 2, "grass", 1, "path", 2, "grass", 1, "path", 7, "grass",
     48, "grass"

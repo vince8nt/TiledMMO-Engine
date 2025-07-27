@@ -1,13 +1,9 @@
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-import { Tileset, Chunk } from './terrain';
-import { loadObject } from './objects';
 import { Player } from './player';
-import { ChunkManager } from './chunkManager';
+import { GameWorld } from './example_usage';
 
 // setup stats/GUI panel
-const gui = new GUI();
 const stats = new Stats();
 document.body.appendChild(stats.dom);
 
@@ -30,28 +26,12 @@ let cameraHeight = 32;
 const minDistance = 8;
 const maxDistance = 48;
 
-// Initialize chunk system
-const tileset = new Tileset();
-await tileset.loadChunkData();
-
-// Create chunk manager (will be initialized later)
-let chunkManager: ChunkManager;
-
-// add Building objects
-const burnedTower = await loadObject('Burned_Tower');
-burnedTower.position.set(5, 0, -7);
-scene.add( burnedTower );
-
-const sproutTower = await loadObject('Sprout_Tower');
-sproutTower.position.set(-11, 0, -7);
-scene.add( sproutTower );
+// Initialize enhanced game world
+const gameWorld = new GameWorld(scene);
+await gameWorld.initialize();
 
 // Add player to scene
 scene.add(player.getMesh());
-
-// Initialize chunk manager
-chunkManager = new ChunkManager(tileset, scene);
-await chunkManager.loadChunkMap();
 
 // Start animation loop after everything is initialized
 renderer.setAnimationLoop(animate);
@@ -85,7 +65,11 @@ scene.add(light);
 // camera.position.y = 20;
 
 // renderer.render(scene, camera);
-function animate() {
+let lastTime = 0;
+function animate(currentTime: number) {
+  const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
+  lastTime = currentTime;
+  
   stats.update();
   player.update();
   
@@ -94,10 +78,8 @@ function animate() {
   camera.position.set(playerPos.x, playerPos.y + cameraHeight, playerPos.z + cameraDistance);
   camera.lookAt(playerPos);
   
-  // Update chunks based on player position (if chunk manager is initialized)
-  if (chunkManager) {
-    chunkManager.updateChunks(playerPos.x, playerPos.z);
-  }
+  // Update enhanced game world
+  gameWorld.update(playerPos.x, playerPos.z, deltaTime);
   
   renderer.render(scene, camera);
 }

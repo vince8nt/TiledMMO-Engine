@@ -1,0 +1,65 @@
+[
+  [
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"}
+  ],
+  [
+    {"terrain": "trees"},
+    {
+      "terrain": "building_allign_test",
+      "objects": [
+        {
+          "type": "Burned_Tower",
+          "x": 5,
+          "y": 9
+        }
+      ]
+    },
+    {
+      "terrain": "building_allign_test",
+      "objects": [
+        {
+          "type": "Sprout_Tower",
+          "x": 5,
+          "y": 9,
+          "rotation": 1.57
+        }
+      ]
+    },
+    {
+      "terrain": "grass"
+    },
+    {
+      "terrain": "trees"
+    },
+    {"terrain": "trees"}
+  ],
+  [
+    {"terrain": "trees"},
+    {
+      "terrain": "mini_mountain"
+    },
+    {
+      "terrain": "trees"
+    },
+    {
+      "terrain": "grass"
+    },
+    {
+      "terrain": "mini_mountain"
+    },
+    {"terrain": "trees"}
+  ],
+  [
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"},
+    {"terrain": "trees"}
+  ]
+] 
