@@ -38,7 +38,7 @@ export class Tileset {
             console.error(`Chunk data not found for: ${chunkName}`);
             return null;
         }
-        console.log(`Generating chunk: ${chunkName}`, chunkData);
+        // console.log(`Generating chunk: ${chunkName}`, chunkData);
         return this.gen_chunk(chunkData);
     }
 
@@ -65,7 +65,7 @@ export class Tileset {
                 c_ind++;
             }
         }
-        console.log(`Chunk generated with ${tilesAdded} tiles, total positions: ${c_ind}`);
+        // console.log(`Chunk generated with ${tilesAdded} tiles, total positions: ${c_ind}`);
         return chunk;
     }
 }

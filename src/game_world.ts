@@ -4,12 +4,12 @@ import { EnhancedChunkManager } from './chunkManager';
 
 // Example of how to integrate the enhanced chunk system
 export class GameWorld {
-    private scene: THREE.Scene;
+    // private scene: THREE.Scene;
     private tileset: Tileset;
     private chunkManager: EnhancedChunkManager;
 
     constructor(scene: THREE.Scene) {
-        this.scene = scene;
+        // this.scene = scene;
         this.tileset = new Tileset();
         this.chunkManager = new EnhancedChunkManager(this.tileset, scene);
     }

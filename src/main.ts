@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { Player } from './player';
-import { GameWorld } from './example_usage';
+import { GameWorld } from './game_world';
 
 // setup stats/GUI panel
 const stats = new Stats();
