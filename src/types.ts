@@ -16,17 +16,30 @@ export interface ObjectPlacement {
     scale?: number; // scale factor
 }
 
-// Sprite data for 2D elements
-export interface SpriteData {
-    type: string; // sprite type/name
-    x: number; // local position within chunk
-    y: number; // local position within chunk
-    layer: number; // rendering layer (0 = background, 1 = mid, 2 = foreground)
+// Sprite configuration from sprites.json
+export interface SpriteConfig {
+    texture: string;
+    type: 'static' | 'animated';
+    scale_x: number;
+    scale_y: number;
+    layer: number;
     animation?: {
         frames: number;
+        frameWidth: number;
+        frameHeight: number;
         speed: number;
         loop: boolean;
     };
+}
+
+// Sprite data for 2D elements
+export interface SpriteData {
+    type: string; // sprite type/name (references SpriteConfig)
+    x: number; // local position within chunk
+    y: number; // local position within chunk
+    layer?: number; // optional override for rendering layer
+    scale_x?: number; // optional override for X scale
+    scale_y?: number; // optional override for Y scale
 }
 
 // Enhanced chunk instance that extends THREE.Group

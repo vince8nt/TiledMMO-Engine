@@ -1,0 +1,23 @@
+{
+  "ball": {
+    "texture": "./textures/ball.png",
+    "type": "static",
+    "scale_x": 1.0,
+    "scale_y": 1.0,
+    "layer": 1
+  },
+  "rugged_rock": {
+    "texture": "./textures/rugged_rock.png",
+    "type": "animated",
+    "scale_x": 5.0,
+    "scale_y": 3.0,
+    "layer": 0,
+    "animation": {
+      "frames": 24,
+      "frameWidth": 4,
+      "frameHeight": 6,
+      "speed": 0.1,
+      "loop": true
+    }
+  }
+} 

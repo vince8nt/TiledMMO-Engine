@@ -10,6 +10,8 @@ document.body.appendChild(stats.dom);
 // setup 3d renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace; // Better color management
+renderer.toneMapping = THREE.NoToneMapping; // Disable tone mapping globally
 document.body.appendChild(renderer.domElement); // add canvas
 
 // setup scene

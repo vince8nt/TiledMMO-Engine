@@ -32,21 +32,9 @@ export class EnhancedChunkManager {
     }
 
     async loadSpriteTextures(): Promise<void> {
-        // Load common sprite textures - only load if they exist
-        try {
-            await this.spriteManager.loadSpriteTexture('smoke', './textures/smoke.png');
-        } catch (error) {
-            console.warn('Smoke texture not found, skipping...');
-        }
-        
-        try {
-            await this.spriteManager.loadSpriteTexture('grass_patch', './textures/grass_patch.png');
-        } catch (error) {
-            console.warn('Grass patch texture not found, skipping...');
-        }
-        
-        // Add more sprite textures as needed
-        console.log('Sprite textures loaded successfully');
+        // Load sprite configurations and textures
+        await this.spriteManager.loadSpriteConfigs();
+        await this.spriteManager.loadSpriteTextures();
     }
 
     private getChunkKey(x: number, z: number): string {

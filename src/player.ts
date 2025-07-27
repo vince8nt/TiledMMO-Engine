@@ -13,7 +13,7 @@ export class Player {
         this.mesh = new THREE.Mesh(geometry, material);
         
         // Set initial position
-        this.mesh.position.set(0, 0.5, 0);
+        this.mesh.position.set(18, 0.5, 18);
         
         // Initialize velocity
         this.velocity = new THREE.Vector3();
