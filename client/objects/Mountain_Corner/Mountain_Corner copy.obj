@@ -1,0 +1,43 @@
+# Mountain Corner Object
+
+# Vertices
+v 0.5 0 0.5         # bottom corner
+v 0.5 0.125 0.25    # 1st layer side1
+v 0.25 0.125 0.25   # 1st layer middle
+v 0.25 0.125 0.5    # 1st layer side2
+v 0.5 0.875 -0.25   # 2nd layer side1
+v -0.25 0.875 -0.25 # 2nd layer middle
+v -0.25 0.875 0.5   # 2nd layer side2
+v 0.5 1 -0.5        # top side1
+v -0.5 1 -0.5       # top middle
+v -0.5 1 0.5        # top side2
+
+# Texture coordinates
+vt 1 0       # bottom corner1
+vt 1 0.25    # 1st layer side1
+vt 0.75 0.25 # 1st layer middle1
+vt 1 0.75    # 2nd layer side1
+vt 0.25 0.75 # 2nd layer middle1
+vt 1 1       # top side1
+vt 0 1       # top middle1
+
+vt 0 0       # bottom corner2 
+vt 0 0.25    # 1st layer side2
+vt 0.25 0.25 # 1st layer middle2
+vt 0 0.75    # 2nd layer side2
+vt 0.75 0.75 # 2nd layer middle2
+# use 6      # top side2
+# use 7      # top middle2
+
+# Normals
+vn 0 1 0             # for bottom and top points
+vn 0 0.5547 0.83205  # for side1
+vn 0.83205 0.5547 0  # for side2
+
+# Faces (vertex/texture/normal)
+f 1/1/1 2/2/2 3/3/2
+f 1/8/1 3/10/3 4/9/3
+f 2/2/2 5/4/2 6/5/2 3/3/2
+f 3/10/3 6/12/3 7/11/3 4/9/3
+f 5/4/2 8/6/1 9/7/1 6/5/2
+f 6/12/3 9/6/1 10/7/1 7/11/3

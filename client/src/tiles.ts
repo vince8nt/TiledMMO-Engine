@@ -193,8 +193,13 @@ export class MountainTile extends Tile {
     }
 
     async getTileAt(x:number, y:number, z:number) : Promise<THREE.Mesh> {
-        const geometry = await loadTileGeometry('Mountain_Tile');
+        let geometry: THREE.BufferGeometry;
         
+        if (this.corner_type == 1) {
+            geometry = await loadTileGeometry('Mountain_Corner');
+        } else {
+            geometry = await loadTileGeometry('Mountain_Tile');
+        }
         
         const plane_texture = new THREE.TextureLoader().load( "textures/terrain_tileset.png" );
         plane_texture.magFilter = THREE.NearestFilter;

@@ -14,7 +14,7 @@
       [1, 1], "mount_l", [6, 2], "grass", [1, 1], "mount_r", 1, "mount_r", 1, "grass",
     1, "grass", 1, "mount_l", [5, 1], "grass",
       [6, 1], "mount_u", [1, 1], "grass", 1, "mount_r", 1, "grass",
-    2, "grass", 12, "mount_u", 2, "grass",
+    2, "grass", 12, "mount_u", 2, "mount_lu",
 
     
     1, "path_ul", 14, "path_u", 1, "path_ur",
@@ -53,7 +53,12 @@
     256, "grass"
   ],
   "building_allign_test": [
-    192, "grass",
+    64, "grass",
+    12, "grass", [1, -1], "mount_lu", [2, -1], "mount_u", [1, -1], "mount_ur",
+    12, "grass", [1, -1], "mount_l", [2, -1], "grass", [1, -1], "mount_r",
+    12, "grass", [1, -1], "mount_l", [2, -1], "grass", [1, -1], "mount_r",
+    12, "grass", [1, -1], "mount_dl", [2, -1], "mount_d", [1, -1], "mount_rd",
+    64, "grass",
     2, "grass", 1, "path", 2, "grass", 1, "path", 2, "grass", 1, "path", 7, "grass",
     48, "grass"
   ],

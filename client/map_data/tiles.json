@@ -10,8 +10,12 @@
 
   "mount_u": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 0, "corner_type": 0 },
   "mount_d": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 2, "corner_type": 0 },
-  "mount_l": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 3, "corner_type": 0 },
-  "mount_r": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 1, "corner_type": 0 },
+  "mount_l": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 1, "corner_type": 0 },
+  "mount_r": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 3, "corner_type": 0 },
+  "mount_lu": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 0, "corner_type": 1 },
+  "mount_rd": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 2, "corner_type": 1 },
+  "mount_dl": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 1, "corner_type": 1 },
+  "mount_ur": { "type": "MountainTile", "x": 2, "y": 4, "rep_x": 2, "rep_y": 1, "rot": 3, "corner_type": 1 },
 
   "path": { "type": "Tile", "x": 2, "y": 0, "rep_x": 2, "rep_y": 2, "rot": 0, "trans": false },
 
