@@ -1,19 +1,26 @@
 {
-  "name": "three.js-test",
+  "name": "openmmo-engine",
+  "version": "1.0.0",
+  "description": "OpenMMO Game Engine with Multiplayer Support",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "devDependencies": {
-    "@types/three": "^0.175.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.2.5"
+    "concurrently": "^8.2.2"
   },
-  "dependencies": {
-    "three": "^0.175.0"
-  }
+  "keywords": ["game-engine", "multiplayer", "threejs", "express", "postgresql"],
+  "author": "",
+  "license": "MIT"
 }

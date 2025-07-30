@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { Player } from './player';
 import { GameWorld } from './game_world';
+import { testChunkConverter } from './chunkConverterTest';
 
 // setup stats/GUI panel
 const stats = new Stats();
@@ -28,6 +29,9 @@ let cameraHeight = 32;
 const minDistance = 8;
 const maxDistance = 48;
 
+// Test chunk converter
+testChunkConverter();
+
 // Initialize enhanced game world
 const gameWorld = new GameWorld(scene);
 await gameWorld.initialize();
@@ -50,6 +54,38 @@ document.addEventListener('wheel', (event) => {
     // Update camera height proportionally
     cameraHeight = cameraDistance * 1.33; // Maintain aspect ratio
 });
+
+// Wireframe toggle
+let wireframeMode = false;
+document.addEventListener('keydown', (event) => {
+    if (event.key.toLowerCase() === 't') {
+        wireframeMode = !wireframeMode;
+        toggleWireframe(scene, wireframeMode);
+        console.log('Wireframe mode:', wireframeMode ? 'ON' : 'OFF');
+    }
+});
+
+/**
+ * Toggle wireframe mode for all meshes in the scene
+ */
+function toggleWireframe(scene: THREE.Scene, enabled: boolean): void {
+    scene.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+            if (object.material instanceof THREE.Material) {
+                // Check if the material supports wireframe
+                if ('wireframe' in object.material) {
+                    (object.material as any).wireframe = enabled;
+                }
+            } else if (Array.isArray(object.material)) {
+                object.material.forEach(material => {
+                    if ('wireframe' in material) {
+                        (material as any).wireframe = enabled;
+                    }
+                });
+            }
+        }
+    });
+}
 
 
 
