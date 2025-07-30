@@ -6,23 +6,6 @@ A web-based multiplayer game engine built with Three.js, Express.js, and Postgre
 
 This is a monorepo containing both the client-side game engine and server-side multiplayer infrastructure:
 
-```
-OpenMMO-Engine/
-├── client/           # Three.js game engine (frontend)
-│   ├── src/         # TypeScript source files
-│   ├── textures/    # Game textures and assets
-│   ├── objects/     # 3D models and objects
-│   ├── map_data/    # Game world data
-│   └── package.json
-├── server/          # Express.js multiplayer server
-│   ├── src/         # Server source code
-│   ├── env.example  # Environment configuration template
-│   └── package.json
-├── shared/          # Shared types and utilities
-│   └── types.ts     # Common TypeScript interfaces
-└── package.json     # Root workspace configuration
-```
-
 ## Features
 
 ### Client (Game Engine)
