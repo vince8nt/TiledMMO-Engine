@@ -1,6 +1,27 @@
 import * as THREE from 'three';
 import tilesData from '../map_data/tiles.json';
 import { Tileset } from './terrain';
+import { loadTileGeometry } from './objects';
+
+// Tiles definitions
+// // Has a base class tile (never instantiated)
+// // Has multiple subclasses which are instantiated with extra data
+// Tile subclasses define:
+// // geometry data (including scale)
+// // rotation enabled (will instantiate 4 copies of the tile rotated 90 degrees)
+// // hitbox data
+// // Number / size of textures required for instantiation
+// // How these textures will be mapped to the geometry
+// // depth write/depth test
+// // geometry joinability (will only join tiles with the same instantiation parameters)
+// // // direction dependent (modified by rotation)
+// // // if joined, geometry will be stretched and texture will be repeated
+// Doesn't include (specified during instantiation)
+// // position on the map
+// // tileset indicies used for textures
+// // optional repetition of tileset indices
+// // optional frame based animation for tiles that have multiple frames
+// // material data
 
 // Type definitions for tile data
 interface TileData {
@@ -56,7 +77,7 @@ export class Tile {
         this.trans = trans;
     }
 
-    getTileAt(x:number, y:number, z:number) : THREE.Mesh {
+    async getTileAt(x:number, y:number, z:number) : Promise<THREE.Mesh> {
         const plane_geometry = new THREE.PlaneGeometry(1, 1);
         const plane_texture = new THREE.TextureLoader().load( "textures/terrain_tileset.png" );
         plane_texture.magFilter = THREE.NearestFilter;
@@ -110,7 +131,7 @@ export class TreeTile extends Tile {
         super(4, 5, 4, 3, 0, true);
     }
 
-    getTileAt(x:number, y:number, z:number) : THREE.Mesh {
+    async getTileAt(x:number, y:number, z:number) : Promise<THREE.Mesh> {
         const mesh = new THREE.Mesh();
 
         // Create tree as a billboard (sprite) for better performance and appearance
@@ -148,16 +169,16 @@ export class TreeTile extends Tile {
         // Add stump tiles at the base (these can stay as regular tiles)
         let T = TilesetMap.get('stump_ul');
         if (T)
-            mesh.add(T.getTileAt(x, y - 1, z));
+            mesh.add(await T.getTileAt(x, y - 1, z));
         T = TilesetMap.get('stump_ur');
         if (T)
-            mesh.add(T.getTileAt(x + 1, y - 1, z));
+            mesh.add(await T.getTileAt(x + 1, y - 1, z));
         T = TilesetMap.get('stump_dl');
         if (T)
-            mesh.add(T.getTileAt(x, y, z));
+            mesh.add(await T.getTileAt(x, y, z));
         T = TilesetMap.get('stump_dr');
         if (T)
-            mesh.add(T.getTileAt(x + 1, y, z));
+            mesh.add(await T.getTileAt(x + 1, y, z));
 
         return mesh;
     }
@@ -171,8 +192,10 @@ export class MountainTile extends Tile {
         this.corner_type = corner_type;
     }
 
-    getTileAt(x:number, y:number, z:number) : THREE.Mesh {
-        const plane_geometry = new THREE.PlaneGeometry(1, Math.sqrt(2));
+    async getTileAt(x:number, y:number, z:number) : Promise<THREE.Mesh> {
+        const geometry = await loadTileGeometry('Mountain_Tile');
+        
+        
         const plane_texture = new THREE.TextureLoader().load( "textures/terrain_tileset.png" );
         plane_texture.magFilter = THREE.NearestFilter;
         plane_texture.minFilter = THREE.NearestFilter;
@@ -187,13 +210,12 @@ export class MountainTile extends Tile {
         plane_texture.repeat.y = 1.0 / Tile.tileset_size;
 
         const plane_material = new THREE.MeshPhongMaterial({ map: plane_texture});
-        const plane = new THREE.Mesh(plane_geometry, plane_material);
+        const plane = new THREE.Mesh(geometry, plane_material);
         plane.rotateY(this.rot * Math.PI / 2);
-        plane.rotateX(-Math.PI / 4);
         
         plane.position.setX(x);
         plane.position.setZ(y);
-        plane.position.setY(0.5 + z);
+        plane.position.setY(z);
 
         return plane;
     }

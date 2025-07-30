@@ -20,3 +20,22 @@ export async function loadObject(name:string) : Promise<THREE.Group> {
     object.scale.set(0.0625, 0.0625, 0.0625);
     return object;
 }
+
+
+export async function loadTileGeometry(name:string) : Promise<THREE.BufferGeometry> {
+    var objLoader = new OBJLoader();
+    objLoader.setPath("objects/" + name + "/");
+    var object = await objLoader.loadAsync(name + ".obj");
+    // Extract geometry from the loaded object
+    let geometry: THREE.BufferGeometry;
+        
+    // Find the first mesh in the group and use its geometry
+    let foundMesh: THREE.Mesh | null = null;
+    object.traverse((child: THREE.Object3D) => {
+        if (child instanceof THREE.Mesh && !foundMesh) {
+            foundMesh = child as THREE.Mesh;
+        }
+    });
+    geometry = foundMesh ? (foundMesh as THREE.Mesh).geometry : new THREE.PlaneGeometry(1, 1);
+    return geometry;
+}

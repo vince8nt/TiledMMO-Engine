@@ -65,7 +65,7 @@ export class EnhancedChunkManager {
         
         // Load terrain
         if (chunkData.terrain && chunkData.terrain !== 'empty_chunk') {
-            const terrainChunk = this.tileset.genChunkFromName(chunkData.terrain);
+            const terrainChunk = await this.tileset.genChunkFromName(chunkData.terrain);
             if (terrainChunk) {
                 enhancedChunk.terrainChunk.add(terrainChunk);
             }

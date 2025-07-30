@@ -1,12 +1,17 @@
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { Player } from './player';
 import { GameWorld } from './game_world';
 import { testChunkConverter } from './chunkConverterTest';
+import { loadObject } from './objects';
 
 // setup stats/GUI panel
 const stats = new Stats();
 document.body.appendChild(stats.dom);
+
+// setup GUI
+const gui = new GUI();
 
 // setup 3d renderer
 const renderer = new THREE.WebGLRenderer();
@@ -28,6 +33,9 @@ let cameraDistance = 24;
 let cameraHeight = 32;
 const minDistance = 8;
 const maxDistance = 48;
+
+// Animation timing
+let lastTime = 0;
 
 // Test chunk converter
 testChunkConverter();
@@ -103,7 +111,7 @@ scene.add(light);
 // camera.position.y = 20;
 
 // renderer.render(scene, camera);
-let lastTime = 0;
+
 function animate(currentTime: number) {
   const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
   lastTime = currentTime;

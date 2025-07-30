@@ -1,0 +1,32 @@
+# Mountain Tile Object
+g polygon0
+usemtl polygon0
+
+# Vertices
+v -0.5 0 0.5
+v 0.5 0 0.5
+v -0.5 0.125 0.25
+v 0.5 0.125 0.25
+v -0.5 0.875 -0.25
+v 0.5 0.875 -0.25
+v -0.5 1 -0.5
+v 0.5 1 -0.5
+
+# Texture coordinates
+vt 0 0
+vt 1 0
+vt 0 0.25
+vt 1 0.25
+vt 0 0.75
+vt 1 0.75
+vt 0 1
+vt 1 1
+
+# Normals
+vn 0 1 0
+vn 0 0.5547 0.83205
+
+# Faces (vertex/texture/normal)
+f 1/1/1 2/2/1 4/4/2 3/3/2
+f 3/3/2 4/4/2 6/6/2 5/5/2
+f 5/5/2 6/6/2 8/8/1 7/7/1

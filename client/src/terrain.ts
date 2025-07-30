@@ -33,22 +33,22 @@ export class Tileset {
         return this.chunkData[chunkName] || null;
     }
 
-    genChunkFromName(chunkName: string): Chunk | null {
+    async genChunkFromName(chunkName: string): Promise<Chunk | null> {
         const chunkData = this.getChunkData(chunkName);
         if (!chunkData) {
             console.error(`Chunk data not found for: ${chunkName}`);
             return null;
         }
         // console.log(`Generating chunk: ${chunkName}`, chunkData);
-        return this.gen_chunk(chunkData);
+        return await this.gen_chunk(chunkData);
     }
 
-    gen_chunk(tiles: any[]): Chunk {
+    async gen_chunk(tiles: any[]): Promise<Chunk> {
         // Convert list format to grid format
         const grid = ChunkConverter.convertChunkToList(tiles);
         
         // Generate optimized meshes for connected regions
-        const optimizedChunk = this.generateOptimizedChunk(grid);
+        const optimizedChunk = await this.generateOptimizedChunk(grid);
         
         return optimizedChunk;
     }
@@ -56,7 +56,7 @@ export class Tileset {
     /**
      * Generate optimized chunk using connected regions
      */
-    private generateOptimizedChunk(grid: ChunkGrid): Chunk {
+    private async generateOptimizedChunk(grid: ChunkGrid): Promise<Chunk> {
         const chunk = new Chunk();
         
         // Find all unique tile types in the grid
@@ -74,7 +74,7 @@ export class Tileset {
             const regions = ChunkConverter.findConnectedRegions(grid, tileType);
             
             for (const region of regions) {
-                const mesh = this.createRegionMesh(tileType, region, grid);
+                const mesh = await this.createRegionMesh(tileType, region, grid);
                 if (mesh) {
                     chunk.add(mesh);
                 }
@@ -87,7 +87,7 @@ export class Tileset {
     /**
      * Create a mesh for a connected region
      */
-    private createRegionMesh(tileType: string, region: {x: number, y: number, width: number, height: number}, grid: ChunkGrid): THREE.Mesh | null {
+    private async createRegionMesh(tileType: string, region: {x: number, y: number, width: number, height: number}, grid: ChunkGrid): Promise<THREE.Mesh | null> {
         const TileClass = TilesetMap.get(tileType);
         if (!TileClass) {
             console.warn(`Tile type not found: ${tileType}`);
@@ -101,7 +101,7 @@ export class Tileset {
         for (let y = region.y; y < region.y + region.height; y++) {
             for (let x = region.x; x < region.x + region.width; x++) {
                 const height = grid.heights[y][x];
-                const tile = TileClass.getTileAt(x, y, height);
+                const tile = await TileClass.getTileAt(x, y, height);
                 group.add(tile);
             }
         }
