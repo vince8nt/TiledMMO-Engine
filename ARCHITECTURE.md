@@ -4,31 +4,6 @@
 
 OpenMMO Engine is designed as a **monorepo** containing both client-side game engine and server-side multiplayer infrastructure. This architecture was chosen for better development experience, shared code reuse, and simplified deployment.
 
-## Architecture Decision: Monorepo vs Separate Repositories
-
-### Why Monorepo? ✅
-
-**Advantages:**
-- **Shared Code**: Game logic, types, and utilities can be shared between client and server
-- **Atomic Changes**: Game mechanics changes can be coordinated across both sides
-- **Easier Testing**: Full-stack testing and integration testing
-- **Simplified CI/CD**: Single repository for deployment pipelines
-- **Better Developer Experience**: Work on both client and server simultaneously
-- **Version Synchronization**: Client and server versions stay in sync
-
-**Disadvantages:**
-- Larger repository size
-- More complex build processes
-- Potential for tight coupling
-
-### Alternative: Separate Repositories ❌
-
-**Why we didn't choose this:**
-- **Coordination Overhead**: Managing versions between repositories
-- **Deployment Complexity**: Need to coordinate releases
-- **Code Duplication**: Shared logic would need to be duplicated or extracted to packages
-- **Development Friction**: Switching between repositories during development
-
 ## Technology Stack
 
 ### Frontend (Client)
@@ -47,35 +22,6 @@ OpenMMO Engine is designed as a **monorepo** containing both client-side game en
 ### Shared
 - **TypeScript**: Common type definitions
 - **npm workspaces**: Monorepo management
-
-## Project Structure
-
-```
-OpenMMO-Engine/
-├── client/                 # Frontend game engine
-│   ├── src/               # TypeScript source
-│   │   ├── main.ts        # Entry point
-│   │   ├── game_world.ts  # Game world management
-│   │   ├── player.ts      # Player logic
-│   │   ├── terrain.ts     # Terrain system
-│   │   └── ...
-│   ├── textures/          # Game assets
-│   ├── objects/           # 3D models
-│   ├── map_data/          # World data
-│   └── package.json       # Client dependencies
-├── server/                # Backend multiplayer server
-│   ├── src/               # Server source
-│   │   ├── index.ts       # Server entry point
-│   │   ├── database.ts    # Database connection
-│   │   ├── socket.ts      # Socket.IO handlers
-│   │   ├── routes.ts      # REST API routes
-│   │   └── ...
-│   ├── env.example        # Environment template
-│   └── package.json       # Server dependencies
-├── shared/                # Shared code
-│   └── types.ts           # Common TypeScript interfaces
-└── package.json           # Root workspace config
-```
 
 ## Data Flow
 

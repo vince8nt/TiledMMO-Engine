@@ -39,21 +39,3 @@ export class GameWorld {
         return this.chunkManager.getLoadedChunkCount();
     }
 }
-
-// Usage in main.ts:
-/*
-import { GameWorld } from './example_usage';
-
-const gameWorld = new GameWorld(scene);
-await gameWorld.initialize();
-
-// In your render loop:
-function animate() {
-    requestAnimationFrame(animate);
-    
-    const deltaTime = clock.getDelta();
-    gameWorld.update(player.position.x, player.position.z, deltaTime);
-    
-    renderer.render(scene, camera);
-}
-*/ 
