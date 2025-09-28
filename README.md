@@ -108,12 +108,6 @@ The server automatically creates the necessary tables on startup:
 
 ## Architecture Decisions
 
-### Why Monorepo?
-- **Shared Code**: Game logic and types can be shared between client/server
-- **Easier Development**: Work on both sides simultaneously
-- **Simplified Deployment**: Coordinate releases and deployments
-- **Better Testing**: Test the full stack together
-
 ### Technology Stack
 - **Frontend**: Three.js, TypeScript, Vite
 - **Backend**: Express.js, Socket.IO, PostgreSQL
